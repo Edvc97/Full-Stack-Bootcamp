@@ -1,19 +1,30 @@
 <!-- Created by: Edvc97 -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pokédex</title>
-    <link rel="stylesheet" href="./CSS/main-style.css">
-  </head>
-  <body>
-    <script src="./Scripts/main.js" type="module"></script>
 
-  <label for="fname">First name:</label>
-  <input type="text" id="fname" name="fname"><br><br>
-  <input type="submit" value="Submit">
-</form>
-  </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Pokédex</title>
+  <link rel="stylesheet" href="./CSS/main-style.css">
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=search" />
+</head>
+
+<body>
+  <script src="./Scripts/main.js" type="module"></script>
+
+  <form>
+    <div class="logo">
+      <img src="./Extras/pokemon_logo.png">
+    </div>
+    <div class="search">
+      <span class="search-icon material-symbols-outlined">search</span>
+      <input class="search-input" type="search" id="name" name="name" placeholder="Search"><br><br>
+      <ul id ="suggestions"></ul>
+    </div>
+  </form>
+</body>
+
 </html>
