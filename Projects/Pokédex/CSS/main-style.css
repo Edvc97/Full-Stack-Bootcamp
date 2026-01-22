@@ -1,3 +1,70 @@
+body {
+
+    display: flex;
+    justify-content: flex-start; /* Align to top (not center) */
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Lexend', sans-serif;
+    padding-top: 50px; /* The final resting place for the search bar */
+    overflow-x: hidden; /* Prevents weird scrollbars during animation */
+}
+
+/* --- STATE: ACTIVE SEARCH --- */
+
+/* 1. Slide the Form to the top */
+body.search-active form {
+    transform: translateY(0); /* Removes the push, so it slides up */
+}
+
+/* 2. Shrink the Logo */
+body.search-active .logo img {
+    width: 150px;
+    margin-bottom: 5px;
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* 3. Shrink the Search Bar */
+body.search-active .search {
+    transform: scale(0.9); /* Slight shrink */
+    transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+/* 4. Hide Suggestions */
+body.search-active #suggestions {
+    display: none;
+}
+
+/* 5. Reveal Profile Card (with a slight delay) */
+body.search-active #profile-view {
+    opacity: 1;
+    pointer-events: all;
+    transition: opacity 0.4s ease 0.3s; /* 0.3s delay so it waits for the slide */
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    
+    /* THE FLUID MAGIC */
+    /* 1. Start pushed down by 35% of the viewport height */
+    transform: translateY(35vh); 
+    
+    /* 2. Animate the movement smoothly over 0.6 seconds */
+    transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 10; /* Keep it above the profile card */
+}
+
+.logo img {
+    width: 500px;
+    margin-bottom: 10px;
+}
+
 .search {
     --padding: 14px;
 
@@ -5,19 +72,26 @@
     display: flex;
     align-items: center;
     padding: var(--padding);
-    border-radius: 28px;
+    margin-bottom: 3px;
+    border-radius: 15px;
     background: #f6f6f6;
     width: 600px;
     transition: box-shadow 0.25s;
+
 }
 
 .search:focus-within {
-    box-shadow:  0 0 2px rgba(0, 0, 0, 0.75);
+    /* Remove the old shadow */
+    /* box-shadow: 0 0 2px rgba(0, 0, 0, 0.75); */
+    
+    /* Add a soft blue glow and a subtle rise */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1), 0 0 0 3px rgba(66, 153, 225, 0.4);
+    background: white; /* Brightens the bar slightly */
+    transform: translateY(-2px); /* Tiny lift */
 }
 
 .search-input {
     font-size: 16px;
-    font-family: 'Lexend', sans-serif;
     color: #333333;
     margin-left: var(--padding);
     outline: none;
@@ -30,4 +104,274 @@
 .search-input::placeholder,
 .search-icon {
     color: rgba(0, 0, 0, 0.5);
+}
+
+#suggestions {
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 3px;
+    width: 600px;
+    top: 100%;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+
+
+#suggestions li {
+    position: relative;
+    background: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* Aligns text vertically with the image */
+    align-items: center; 
+    /* Adds breathing room inside the box */
+    padding: 10px;
+    /* Adds a separator line between items */
+    border-bottom: 1px solid #d4d4d4; 
+    /* Changes mouse to a hand icon */
+    cursor: pointer; 
+    padding: 10px 25px 10px 10px;
+    /* ROUNDED CORNERS & SEPARATION */
+    border-radius: 15px; 
+    margin-bottom: 10px; /* Pushes the next card down */
+    
+    /* Optional: A tiny shadow makes them pop like real cards */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    /* SMOOTH ANIMATION */
+    /* This tells the browser to animate any changes over 0.2 seconds */
+    transition: all 0.2s ease;
+    
+}
+
+#suggestions li:hover {
+    /* A cleaner, subtle background shift */
+    background-color: #fafafa; 
+    
+    /* The "Lift" - moves the card up by 3 pixels */
+    transform: translateY(-3px);
+    
+    /* A softer, larger shadow to make it look like it's floating */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+#suggestions li img {
+    /* Push the image down so it doesn't hit the ID number */
+    margin-top: 15px; 
+    
+    /* Ensure the image doesn't get too huge */
+    height: 60px; 
+    width: 60px;
+    
+    /* Keep the image crisp */
+    object-fit: contain;
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pokemon-id {
+    position: absolute;
+    top: 5px;
+    right: 17px;
+    font-size: 12px;
+    color: #888;
+    font-weight: bold;
+}
+
+.pokemon-name {
+    text-transform: capitalize;
+    /* Makes the name thick and bold */
+    font-weight: 600; 
+    /* slightly darkens the text for better contrast */
+    color: #333; 
+}
+
+.type-badge {
+    font-size: 10px;
+    font-weight: bold;
+    color: white; /* White text pops on colored backgrounds */
+    padding: 3px 8px;
+    border-radius: 12px; /* Pill shape */
+    margin-right: 5px;
+    text-transform: uppercase;
+    background-color: #aaa; /* Default grey fallback */
+    display: inline-block;
+}
+
+.grass { background-color: #78c850; }
+.poison { background-color: #a040a0; }
+.fire { background-color: #f08030; }
+.water { background-color: #6890f0; }
+.bug { background-color: #a8b820; }
+.normal { background-color: #a8a878; }
+.flying { background-color: #a890f0; }
+.electric { background-color: #f8d030; }
+.ground   { background-color: #e0c068; }
+.fairy    { background-color: #ee99ac; }
+.fighting { background-color: #c03028; }
+.psychic  { background-color: #f85888; }
+.rock     { background-color: #b8a038; }
+.ghost    { background-color: #705898; }
+.ice      { background-color: #98d8d8; }
+.dragon   { background-color: #7038f8; }
+.dark     { background-color: #705848; }
+.steel    { background-color: #b8b8d0; }
+
+/* Width of the scrollbar */
+#suggestions::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* The background "track" the bar moves in */
+#suggestions::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+/* The sliding "thumb" itself */
+#suggestions::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 4px; /* Makes the bar round */
+}
+
+/* Optional: Make it darker when you grab it */
+#suggestions::-webkit-scrollbar-thumb:hover {
+  background-color: #aaaaaa;
+}
+
+/* Container for the Profile View */
+#profile-view {
+    position: absolute;
+    top: 200px; /* Leaves room for the header later */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+/* The White Card */
+.card-container {
+    background: white;
+    width: 350px;
+    border-radius: 30px;
+    padding: 0 20px 30px 20px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    position: relative;
+    margin-top: 60px; /* Push down to make room for image pop-up */
+}
+
+/* 1. Pop-out Image Logic */
+.image-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: -60px; /* Pulls the image UP out of the card */
+    margin-bottom: 10px;
+}
+
+#p-img {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+    z-index: 2;
+}
+
+/* 2. Typography */
+#p-id {
+    color: #999;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#p-name {
+    margin: 5px 0 10px 0;
+    font-size: 28px;
+    text-transform: capitalize;
+    color: #333;
+}
+
+.description {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+/* 3. Info Grid (Height/Weight) */
+.info-grid {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 25px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    background: #f8f9fa;
+    padding: 10px 25px;
+    border-radius: 15px;
+}
+
+.info-item .label {
+    font-size: 11px;
+    color: #888;
+    font-weight: bold;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.info-item .value {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* 4. Stats Circles */
+.stats-container h3 {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.stat-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #eee;
+    font-size: 10px;
+}
+
+.stat-circle.hp { background: #ffcccc; color: #d00000; }
+.stat-circle.atk { background: #ffe6cc; color: #e67300; }
+.stat-circle.def { background: #ffffcc; color: #b38f00; }
+.stat-circle.spa { background: #ccf2ff; color: #0073e6; }
+.stat-circle.spd { background: #d9ffe6; color: #009933; }
+.stat-circle.spd { background: #f2ccff; color: #9900cc; } /* speed */
+
+.stat-num {
+    font-weight: bold;
+    font-size: 11px;
 }

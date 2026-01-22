@@ -22,9 +22,68 @@
     <div class="search">
       <span class="search-icon material-symbols-outlined">search</span>
       <input class="search-input" type="search" id="name" name="name" placeholder="Search"><br><br>
-      <ul id ="suggestions"></ul>
     </div>
+    <ul id ="suggestions"></ul>
   </form>
+  
+  <div id="profile-view" class="hidden">
+    
+    <div class="card-container">
+        <div class="image-wrapper">
+            <img id="p-img" src="" alt="Pokemon">
+        </div>
+
+        <span id="p-id">#000</span>
+        <h2 id="p-name">Bulbasaur</h2>
+        <div id="p-types" class="types-row"></div>
+
+        <p class="description">
+            A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.
+        </p>
+
+        <div class="info-grid">
+            <div class="info-item">
+                <span class="label">Height</span>
+                <span id="p-height" class="value">0.7m</span>
+            </div>
+            <div class="info-item">
+                <span class="label">Weight</span>
+                <span id="p-weight" class="value">6.9kg</span>
+            </div>
+        </div>
+
+        <div class="stats-container">
+            <h3>Stats</h3>
+            <div class="stats-row">
+                <div class="stat-circle hp">
+                    <span class="stat-label">HP</span>
+                    <span id="s-hp" class="stat-num">45</span>
+                </div>
+                <div class="stat-circle atk">
+                    <span class="stat-label">ATK</span>
+                    <span id="s-atk" class="stat-num">49</span>
+                </div>
+                <div class="stat-circle def">
+                    <span class="stat-label">DEF</span>
+                    <span id="s-def" class="stat-num">49</span>
+                </div>
+                <div class="stat-circle spa">
+                    <span class="stat-label">SpA</span>
+                    <span id="s-spa" class="stat-num">65</span>
+                </div>
+                <div class="stat-circle spd">
+                    <span class="stat-label">SpD</span>
+                    <span id="s-spd" class="stat-num">65</span>
+                </div>
+                <div class="stat-circle spd">
+                    <span class="stat-label">SPD</span>
+                    <span id="s-speed" class="stat-num">45</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  
 </body>
 
 </html>
