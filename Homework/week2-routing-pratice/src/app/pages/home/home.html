@@ -1,0 +1,24 @@
+<h1>{{ title }}</h1>
+<p>{{ welcomeMessage }}</p>
+<p><strong>Goal:</strong> {{ goal }}</p>
+
+<h2>Pets (Conditional View)</h2>
+@if (pets.length === 0){
+    <p>No pets Found.</p>
+}@else {
+    <p>You have {{pets.length}} pets</p>
+    <ul>
+    @for (pet of pets; track pet){
+        <li>{{pet}}</li>
+         @if (pet === 'Dog') {
+        <strong>(best one 😄)</strong>
+         }
+    }
+    </ul>
+}
+<h2>Pets (List View)</h2>
+<ul>
+    @for (pet of pets; track pet){
+        <li>{{pet}}</li>
+    }
+</ul>

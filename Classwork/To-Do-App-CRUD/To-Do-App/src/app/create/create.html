@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>To-Do List 📝</h2>
+    <div class="input-group">
+        <input [(ngModel)]="text" placeholder="Type here..."/>
+        <button class="input-button" (click)="addNote()">Add</button>
+    </div>
+
+
+    <div cdkDropList (cdkDropListDropped)="drop($event)" >
+    @for(note of db.notes(); track note; let idx = $index){
+    <div class="note" cdkDrag [class.done]="note.done" (click)="toggleDone(idx)">
+
+        <div class="left-side">
+            <span class="check-icon"></span>
+            {{note.text}}
+        </div>
+
+        <button (click)="$event.stopPropagation(); removeNote(idx)">x</button>
+    </div>
+
+    }
+    </div>
+</div>

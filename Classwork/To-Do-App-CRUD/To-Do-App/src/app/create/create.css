@@ -1,0 +1,95 @@
+body {
+    /* This creates that smooth color transition */
+    background: linear-gradient(135deg, #1d1d42 0%, #7b1fa2 100%);
+    
+    /* This ensures the background covers the whole screen height */
+    min-height: 100vh;
+    margin: 0;
+    
+    /* Clean, modern font like in your screenshot */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h2 {
+    color: #1d1d42; /* A dark color for the heading */
+}
+.container {
+    max-width: 500px;    /* Limits the width */
+    margin: 50px auto;   /* Centering: 50px top/bottom, 'auto' left/right */
+    background: white;   /* The 'card' color */
+    padding: 25px;       /* Space inside the card */
+    border-radius: 15px; /* Rounded corners for the card */
+}
+
+.input-group {
+    display: flex;
+    background-color: #f1f3f4;
+    border-radius: 30px;
+}
+
+input {
+    border: none;
+    background: transparent;
+    flex-grow: 1;
+    padding: 15px 20px; /* Adds some space inside the input */
+}
+
+input:focus {
+    outline: none; /* Removes the default blue outline on focus */
+}
+
+.input-button {
+    background-color: #ffd700;
+    /* Rounds the button to match the input's rounded style */
+    border-radius: 30px;
+    border: none;
+    padding: 15px 40px; /* Gives the button some width */
+    cursor: pointer;
+}
+
+.note {
+    height: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px;
+    border-bottom: 1px solid #f1f3f4;
+    padding: 20px;
+}  
+.left-side {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Adds space between the circle and the text */
+}
+
+.check-icon {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #e0e0e0; /* Light gray border */
+    border-radius: 50%;        /* 50% radius makes a perfect circle */
+    display: inline-block;
+}
+
+.done {
+  opacity: 0.5;
+}
+
+.done .left-side {
+    text-decoration: line-through; /* Strikethrough effect */
+    color: #999; /* A subtle gray color for completed tasks */
+}
+
+.done .check-icon {
+    background-color: #ffd700; /* The orange-red fill */
+    border-color: #ffd700;     /* Matches the border to the fill */
+}
+
+/* Targets the delete button inside the note */
+.note button {
+    background: transparent; /* Makes it see-through */
+    border: none;            /* Removes the boxy outline */
+    color: #999;             /* a subtle grey color */
+    font-size: 1.2rem;       /* slightly larger text */
+    cursor: pointer;         /* shows a hand icon on hover */
+    margin-left: auto;       /* ensures it stays to the right */
+}

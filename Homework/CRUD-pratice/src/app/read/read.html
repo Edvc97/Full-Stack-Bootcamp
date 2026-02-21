@@ -1,0 +1,6 @@
+@for (user of db.Users; track user.email) {
+    <p>{{user.firstName}} {{user.lastName}}, {{user.email}}</p>
+    <button (click)="db.deleteUser(user.email)">Delete User</button>
+    <a routerLink='/update/{{user.email}}'>Go to Update Page</a><br> 
+    <br>
+}
